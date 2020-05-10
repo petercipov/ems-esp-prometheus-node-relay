@@ -1,0 +1,70 @@
+{
+    "wWComfort" : "Warm wattern comfort level, f.e. hot",
+    "wWSelTemp" : "Selected temperature for warm watter [℃]",
+    "wWDisinfectionTemp" : "Warm watter disinfection temperature [℃]",
+    "wWCircPump": "Warm Water circulation pump available [0-1]",
+    "wWCiPuType": "Warm Water circulation pump type [0 = charge pump, 0xff = 3-way pump]",
+    "wWCiPuMode": "Warm Water circulation pump mode [1 = 1x3min, ..., 6=6x3min, 7 continuous]",
+    "wWCurTmp": "Warm watter current temperature [℃]",
+    "wWCurFlow": "Warm Water current flow in [liter/min]",
+    "wwStorageTemp2": "Warm water temperature (extern) [℃]",
+    "wWActivated": "Warm watter activated [0-1]",
+    "wWOnetime": "Warm warter one time function enabled [0-1]",
+    "wWDesinfecting": "Warm warter desinfection enabled [0-1]",
+    "wWReady": "Warm watter readiness enabled [0-1?]",
+    "wWRecharge": "Warm watter recharging enabled [0-1?]",
+    "wWTempOK": "Warm watter temperature ok enabled [0-1?]",
+    "wWCirc": "Warm Water circulation active [0-1]",
+    "wWHeat": "Warm Water 3-way valve active [0-1]",
+    "wWStarts": "Warm water # starts [count]",
+    "wWWorkM": "Warm Water active time [minutes]",
+
+    "pump_mod_max": "Boiler circuit pump modulation max power [%]",
+    "pump_mod_min": "Boiler circuit pump modulation min power [%]",
+    "pumpMod": "Domestic hot water pump modulation [%]",
+
+
+    "selFlowTemp": "Selected flow temperature [℃]",
+    "curFlowTemp": "Current flow temperature [℃]",
+
+    "selBurnPow": "Selected Burning Power [%]",
+    "curBurnPow": "Current Burning Power [%]",
+    
+    "outdoorTemp": "Outdoor temperature [℃]",
+    "retTemp": "Return temperature [℃]",
+    "switchTemp": "Switch temperature [℃]",
+    "boilTemp": "Boiler temperature [℃]",
+    "heating_temp": "Heating temperature setting on the boiler [℃]",
+
+
+    "sysPress": "System Pressure [bar]",
+    "burnGas": "Buring gas [0-1]",
+    "flameCurr": "Flame current [uA]",
+
+    "heatPmp": "Boiler pump active [0-1]",
+    "fanWork": "Fan active [0-1]",
+    "ignWork": "Ignition active [0-1]",
+
+
+    "UBAuptime": "Total System operating time [min]",
+    "burnStarts": "Burner restarts",
+    "burnWorkMin": "Total burner operating time [min]",
+    "heatWorkMin": "Total heat operating time [min]",
+    "ServiceCode": "2 character status/service code",
+    "ServiceCodeNumber": "error/service code",
+
+
+    "dampedtemp": "[℃]",
+    "tempsensor1": "[℃]",
+    "seltemp": "Selected temperature [℃]",
+    "currtemp": "Current temperature [℃]",
+    "daytemp": "Temperature at day [℃]",
+    "nighttemp": "Temperature at night [℃]",
+    "holidaytemp": "Temperature at holiday [℃]",
+    "heatingtype": "type of heating: 1 radiator, 2 convectors, 3 floors, 4 room supply",
+    "circuitcalctemp": "Calculated flow temperature [℃]",
+    "offsettemp": "[℃]",
+    "designtemp": "[℃]",
+    "mode": "0 - day, 1 night, 2 holiday"
+
+}

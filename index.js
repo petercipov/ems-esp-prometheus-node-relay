@@ -1,6 +1,7 @@
 const mqtt = require("mqtt")
 const prometheus = require('prom-client');
 const http = require('http');
+const help = require('./help.json')
 
 const MQTT_URL = process.env.MQTT_URL
 const MQTT_USERNAME = process.env.MQTT_USERNAME
@@ -34,8 +35,27 @@ mqttClinet.on('connect', () => {
 });
 
 mqttClinet.on('message', (topic, buffer) => {
-    const params = JSON.parse(buffer.toString());
     const tags = topic.split("/")
+    const raw = buffer.toString();
+
+    let params;
+    try {
+        params = JSON.parse(raw);
+    } catch (ex) {
+        const key = tags[tags.length-1];
+        try {
+            params = {};
+            params[key] = Number.parseInt(raw, 10)
+        } catch (ex2) {
+            params = {};
+            try {
+                params[key] = Number.parseFloat(raw)
+            } catch(ex3) {
+                params[key] = raw
+            }
+        }
+    }
+    
     toPrometheus(tags, params)
 });
 
@@ -60,7 +80,7 @@ function ensureMetric(key) {
     if (!metrics[key]) {
         metrics[key] = new prometheus.Gauge({
             name: METRIC_PREFIX + key,
-            help: key,
+            help: help[key] || key,
             labelNames: ['device', 'kind'],
             registers: [registry],
         });
