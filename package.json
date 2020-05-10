@@ -1,0 +1,28 @@
+{
+  "name": "ems-esp-prometheus-node-relay",
+  "version": "1.0.0",
+  "description": "Relays EMS-ESP metrics from MQTT to Prometheus",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/petercipov/ems-esp-prometheus-node-relay.git"
+  },
+  "keywords": [
+    "mqtt",
+    "pometheus",
+    "ems-esp"
+  ],
+  "author": "Peter cipov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/petercipov/ems-esp-prometheus-node-relay/issues"
+  },
+  "homepage": "https://github.com/petercipov/ems-esp-prometheus-node-relay#readme",
+  "dependencies": {
+    "mqtt": "4.0.1",
+    "prom-client": "^12.0.0"
+  }
+}
