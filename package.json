@@ -1,7 +1,7 @@
 {
   "name": "ems-esp-prometheus-node-relay",
   "version": "1.0.0",
-  "description": "Relays EMS-ESP metrics from MQTT to Prometheus",
+  "description": "Relay EMS-ESP metrics from MQTT to Prometheus",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
