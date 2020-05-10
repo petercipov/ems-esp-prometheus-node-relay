@@ -8,6 +8,7 @@ const MQTT_PASSWORD = process.env.MQTT_PASSWORD
 const CLIENT_ID = process.env.CLIENT_ID || 'MQTT-PROMETHEUS-RELAY'
 const MQTT_TOPIC = process.env.MQTT_TOPIC || 'home/#'
 const PORT = process.env.RELAY_PORT || 8090
+const METRIC_PREFIX = process.env.METRIC_PREFIX || 'ems_esp_'
 
 console.log("Booting with params:")
 console.log("- MQTT_URL", MQTT_URL)
@@ -15,6 +16,8 @@ console.log("- MQTT_USERNAME", MQTT_USERNAME)
 console.log("- CLIENT_ID", CLIENT_ID)
 console.log("- MQTT_TOPIC", MQTT_TOPIC)
 console.log("- PORT", PORT)
+console.log("- METRIC_PREFIX", METRIC_PREFIX)
+
 
 const registry = new prometheus.Registry();
 const metrics = {}
@@ -56,7 +59,7 @@ function toPrometheus(tags, params) {
 function ensureMetric(key) {
     if (!metrics[key]) {
         metrics[key] = new prometheus.Gauge({
-            name: key,
+            name: METRIC_PREFIX + key,
             help: key,
             labelNames: ['device', 'kind'],
             registers: [registry],
