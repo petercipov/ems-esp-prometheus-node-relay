@@ -1,4 +1,4 @@
-FROM node:14.2.0-alpine
+FROM node:slim
 WORKDIR /relay
 COPY . .
 LABEL name="ems-esp-prometheus-node-relay"
