@@ -10,11 +10,11 @@ const MQTT_TOPIC = process.env.MQTT_TOPIC || 'home/#'
 const PORT = process.env.RELAY_PORT || 8090
 
 console.log("Booting with params:")
-console.log("MQTT_URL", MQTT_URL)
-console.log("MQTT_USERNAME", MQTT_USERNAME)
-console.log("CLIENT_ID", CLIENT_ID)
-console.log("MQTT_TOPIC", MQTT_TOPIC)
-console.log("PORT", PORT)
+console.log("- MQTT_URL", MQTT_URL)
+console.log("- MQTT_USERNAME", MQTT_USERNAME)
+console.log("- CLIENT_ID", CLIENT_ID)
+console.log("- MQTT_TOPIC", MQTT_TOPIC)
+console.log("- PORT", PORT)
 
 const registry = new prometheus.Registry();
 const metrics = {}
