@@ -2,12 +2,13 @@
     "wWComfort" : "Warm wattern comfort level, f.e. hot",
     "wWSelTemp" : "Selected temperature for warm watter [℃]",
     "wWDisinfectionTemp" : "Warm watter disinfection temperature [℃]",
-    "wWCircPump": "Warm Water circulation pump available [0-1]",
     "wWCiPuType": "Warm Water circulation pump type [0 = charge pump, 0xff = 3-way pump]",
     "wWCiPuMode": "Warm Water circulation pump mode [1 = 1x3min, ..., 6=6x3min, 7 continuous]",
     "wWCurTmp": "Warm watter current temperature [℃]",
-    "wWCurFlow": "Warm Water current flow in [liter/min]",
     "wwStorageTemp2": "Warm water temperature (extern) [℃]",
+    "wWCurFlow": "Warm Water current flow in [liter/min]",
+    
+    "wWCircPump": "Warm Water circulation pump enabled [0-1]",
     "wWActivated": "Warm watter activated [0-1]",
     "wWOnetime": "Warm warter one time function enabled [0-1]",
     "wWDesinfecting": "Warm warter desinfection enabled [0-1]",
@@ -16,6 +17,7 @@
     "wWTempOK": "Warm watter temperature ok enabled [0-1?]",
     "wWCirc": "Warm Water circulation active [0-1]",
     "wWHeat": "Warm Water 3-way valve active [0-1]",
+
     "wWStarts": "Warm water # starts [count]",
     "wWWorkM": "Warm Water active time [minutes]",
 

@@ -1,7 +1,7 @@
 const mqtt = require("mqtt")
-const prometheus = require('prom-client');
 const http = require('http');
-const help = require('./help.json')
+const parser = require('./parser');
+const prometheus = require('./prometheus');
 
 const MQTT_URL = process.env.MQTT_URL
 const MQTT_USERNAME = process.env.MQTT_USERNAME
@@ -19,78 +19,28 @@ console.log("- MQTT_TOPIC", MQTT_TOPIC)
 console.log("- PORT", PORT)
 console.log("- METRIC_PREFIX", METRIC_PREFIX)
 
-
-const registry = new prometheus.Registry();
-const metrics = {}
-
-const mqttClinet  = mqtt.connect(MQTT_URL, {
+const mqttClient  = mqtt.connect(MQTT_URL, {
     username: MQTT_USERNAME,
     password: MQTT_PASSWORD,
     clientId: CLIENT_ID,
 });
 
-
-mqttClinet.on('connect', () => {
-    mqttClinet.subscribe(MQTT_TOPIC);
+mqttClient.on('connect', () => {
+    mqttClient.subscribe(MQTT_TOPIC);
 });
 
-mqttClinet.on('message', (topic, buffer) => {
+mqttClient.on('message', (topic, buffer) => {
     const tags = topic.split("/")
     const raw = buffer.toString();
 
-    let params;
-    try {
-        params = JSON.parse(raw);
-    } catch (ex) {
-        const key = tags[tags.length-1];
-        try {
-            params = {};
-            params[key] = Number.parseInt(raw, 10)
-        } catch (ex2) {
-            params = {};
-            try {
-                params[key] = Number.parseFloat(raw)
-            } catch(ex3) {
-                params[key] = raw
-            }
-        }
-    }
-    
-    toPrometheus(tags, params)
+    const params = parser.parse(tags, raw);
+    prometheus.set(tags, params);
 });
-
-function toPrometheus(tags, params) {
-    for (let key in params)  {
-        const value = params[key];
-        
-        if (typeof value === 'number') {
-            ensureMetric(key);
-            metrics[key].labels(tags[1], tags[2]).set(value);
-        } else if (value === 'on') {
-            ensureMetric(key);
-            metrics[key].labels(tags[1], tags[2]).set(1);
-        } else if (value === 'off') {
-            ensureMetric(key);
-            metrics[key].labels(tags[1], tags[2]).set(0);
-        }
-    }
-}
-
-function ensureMetric(key) {
-    if (!metrics[key]) {
-        metrics[key] = new prometheus.Gauge({
-            name: METRIC_PREFIX + key,
-            help: help[key] || key,
-            labelNames: ['device', 'kind'],
-            registers: [registry],
-        });
-    }
-}
 
 
 const server = http.createServer((req, res) => {
-    res.writeHead(200, { 'Content-Type': registry.contentType });
-    res.end(registry.metrics())
+    res.writeHead(200, { 'Content-Type': prometheus.contentType() });
+    res.end(prometheus.snapshot());
 });
 
 console.log("Running at port " + PORT)
